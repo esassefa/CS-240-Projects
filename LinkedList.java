@@ -22,7 +22,7 @@
 			if(firstNode == null ) {
 			firstNode = node;
 			} else {
-				node.next = firstNode;
+				node.setNext(firstNode);
 				firstNode = node;
 				
 				
@@ -37,7 +37,7 @@
 				firstNode = node;
 				lastNode = firstNode;
 			} else {
-				node.prev = lastNode;
+				node.setPrev(lastNode);
 				lastNode = node;
 			}
 			numberOfEntries++;
@@ -54,16 +54,16 @@
 		
 		public T removeFromFront() {
 			DLNode<T> node = firstNode;
-			T temp = node.data;
-			firstNode = firstNode.next;
+			T temp = node.getData();
+			firstNode = firstNode.getNext();
 			return temp;
 			numberOfEntries--;
 		}
 		
 		public T removeFromBack() {
 			DLNode<T> node = lastNode;
-				T temp = node.data;
-				lastNode = lastNode.prev;
+				T temp = node.getData();
+				lastNode = lastNode.getPrev();
 			numberOfEntries--;
 		}
 		public T remove(int position) {
@@ -71,7 +71,7 @@
 			T temp = node.getData();// hold data in temp variable
 			DLNode<T> nodeBefore = getNodeAt(position - 1);// dereference node at given position 
 			DLNode<T> nodeAfter = getNodeAt(position + 1);
-			nodeBefore.next = nodeAfter;
+			nodeBefore.setNext(nodeAfter);
 			
 			return temp; //return data in temp variable
 			numberOfEntries--;
@@ -113,7 +113,8 @@
 		}
 		
 		private void initializeDataFields() {
-			head = null;
+			firstNode = null;
+			lastNode = null;
 			numberOfEntries = 0;
 		}
 		
